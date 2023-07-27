@@ -11,6 +11,10 @@ const GeneralRoutes = {
       element: <Tasks />,
     },
     {
+      path: "/form/:id",
+      element: <TaskForm />,
+    },
+    {
       path: "/form",
       element: <TaskForm />,
     },

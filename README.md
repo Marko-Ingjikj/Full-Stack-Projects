@@ -2,6 +2,6 @@
 
 ## Used in projects
 
-● Nest.js (for backend)
-● React.js (for frontend)
+● Nest.js (for backend)<br>
+● React.js (for frontend)<br>
 ● PostreSQL (for database)
