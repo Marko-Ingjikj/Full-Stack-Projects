@@ -1,7 +1,3 @@
 # Personal Full-Stack-Projects 🚀
 
-## Used in projects
-
-● Nest.js (for backend)<br>
-● React.js (for frontend)<br>
-● PostreSQL (for database)
+## All projects are made with javascript libraries and frameworks and for database with PostgreSQL or MongoDB
