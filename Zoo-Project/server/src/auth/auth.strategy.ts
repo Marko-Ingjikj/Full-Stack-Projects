@@ -6,13 +6,11 @@ import { UserResponseDto } from './dtos/auth.dto';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
-  constructor(private authService: AuthService) {
-    super();
-  }
-
-  async validate(emaiL: string, password: string): Promise<UserResponseDto> {
-    const user = await this.authService.validateUser(email, password);
-
-    return user;
-  }
+  //   constructor(private authService: AuthService) {
+  //     super();
+  //   }
+  //   async validate(emaiL: string, password: string): Promise<UserResponseDto> {
+  //     const user = await this.authService.validateUser(email, password);
+  //     return user;
+  //   }
 }
