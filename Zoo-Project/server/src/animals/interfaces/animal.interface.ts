@@ -14,7 +14,7 @@ export interface Animal {
 
 interface Characteristics {
   food: string[];
-  colour: string;
+  color: string;
   isDangerous: boolean;
   weight: number;
   enclosure: Enclosure;

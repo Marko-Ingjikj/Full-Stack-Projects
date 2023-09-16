@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { AnimalCharacteristicsDto } from './dtos/animal.dto';
+import { Zookeeper } from 'src/zookeepers/zookeepers.entity';
 
 @Entity()
 export class Animal {
@@ -29,6 +30,6 @@ export class Animal {
   })
   zookeeperId: string;
 
-  //   @ManyToOne(() => Zookeeper, (zookeeper) => zookeeper.animals)
-  //   zookeeper: Zookeeper;
+  @ManyToOne(() => Zookeeper, (zookeeper) => zookeeper.animals)
+  zookeeper: Zookeeper;
 }

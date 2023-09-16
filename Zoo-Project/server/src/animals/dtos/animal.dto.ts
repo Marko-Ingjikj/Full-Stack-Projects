@@ -1,10 +1,17 @@
+import { Type } from 'class-transformer';
 import {
   IsBoolean,
   IsEnum,
   IsNotEmpty,
+  IsNotEmptyObject,
   IsNumber,
+  IsOptional,
   IsString,
+  IsUUID,
+  Min,
+  ValidateNested,
 } from 'class-validator';
+import { Animal } from '../interfaces/animal.interface';
 
 export enum Enclosure {
   Aquarium = 'aquarium',
@@ -43,4 +50,43 @@ export class AnimalCharacteristicsDto {
   @IsEnum(Enclosure)
   @IsNotEmpty()
   enclosure: Enclosure;
+}
+
+export class AnimalCreateDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  type: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  @Min(0)
+  age: number;
+
+  @IsString()
+  @IsNotEmpty()
+  location: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @IsEnum(['M', 'F'])
+  gender: string;
+
+  @IsNotEmptyObject()
+  @ValidateNested()
+  @Type(() => AnimalCharacteristicsDto)
+  characteristics: AnimalCharacteristicsDto;
+
+  @IsOptional()
+  @IsString()
+  zookeeperId?: string;
+}
+
+export class AnimalResponseDto extends AnimalCreateDto implements Animal {
+  @IsUUID()
+  @IsNotEmpty()
+  id: string;
 }
