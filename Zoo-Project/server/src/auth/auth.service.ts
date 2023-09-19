@@ -14,6 +14,7 @@ import {
 } from './dtos/auth.dto';
 import { SALT_ROUNDS } from './auth.const';
 import * as bcrypt from 'bcrypt';
+import { RolesEnum } from './roles.enum';
 
 @Injectable()
 export class AuthService {

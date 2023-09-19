@@ -1,29 +1,42 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "./common/AuthContext";
+
 const Nav = () => {
+  const { accessToken } = useContext(AuthContext);
+  const loggedIn = !!accessToken;
+  // console.log(accessToken);
+  // console.log(loggedIn);
+
   return (
     <nav>
       <div className="logo-div">
         <h1 className="h1-logo">Marko's Zoo</h1>
       </div>
       <div className="links-div">
-        <a className="nav-link" href="/">
+        <Link className="nav-link" to="/">
           About
-        </a>
-        <a className="nav-link" href="/animals">
+        </Link>
+        <Link className="nav-link" to="/animals">
           Animals
-        </a>
-        <a className="nav-link" href="/zookeepers">
+        </Link>
+        <Link className="nav-link" to="/zookeepers">
           Zookeepers
-        </a>
+        </Link>
       </div>
 
-      <div className="links-div">
-        <a className="nav-link" href="/login">
-          Login
-        </a>
-        <a className="nav-link" href="/register">
-          Register
-        </a>
-      </div>
+      {loggedIn ? (
+        <button>Logout</button>
+      ) : (
+        <div className="links-div">
+          <Link className="nav-link" to="/login">
+            Login
+          </Link>
+          <Link className="nav-link" to="/register">
+            Register
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };

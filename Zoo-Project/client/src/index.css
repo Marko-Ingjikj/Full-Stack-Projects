@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap");
+@import url("react-toastify/dist/ReactToastify.css");
 
 * {
   padding: 0;
@@ -68,4 +69,91 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+/*  */
+/*  */
+/* LOGIN SECTION */
+
+.login-main {
+  width: 100%;
+  height: 94vh;
+  background-image: url("https://media.istockphoto.com/id/1270800992/vector/seamless-pattern-with-tropical-animals-and-bird-in-jungle.jpg?s=612x612&w=0&k=20&c=7lFa4lDWHlMLLtHwt_ktLqDWdaTEZ2JfMgO6M14_1J4=");
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-details {
+  background-color: #f1f5f9;
+  box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
+  border-radius: 10px;
+  width: 500px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  position: relative;
+}
+
+.login-credentials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.login-field {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.account-input {
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 4px;
+}
+/*  */
+/*  */
+/* REGISTER SECTION */
+
+.register-main {
+  height: 94vh;
+  background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/seamless-pattern-tropical-animals-and-leaves-julien.jpg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-logo {
+  width: 200px;
+  height: 200px;
+}
+
+.account-button {
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s;
+  background-color: #4c74d8;
+  color: white;
+}
+
+.account-button[disabled] {
+  background-color: #ccc;
+  color: #666;
+  cursor: auto;
+}
+
+.error-message {
+  position: absolute;
+  bottom: 0;
+  color: red;
 }

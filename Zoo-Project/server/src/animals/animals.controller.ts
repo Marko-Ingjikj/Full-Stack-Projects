@@ -8,7 +8,6 @@ import {
   Put,
 } from '@nestjs/common';
 import { AnimalsService } from './animals.service';
-import { Animal } from './animals.entity';
 import { AnimalCreateDto, AnimalResponseDto } from './dtos/animal.dto';
 
 @Controller('animals')

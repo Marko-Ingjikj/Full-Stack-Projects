@@ -1,12 +1,18 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from './database/database.module';
 import { AnimalsModule } from './animals/animals.module';
 import { ZookeepersModule } from './zookeepers/zookeepers.module';
-import { UserService } from './user/user.service';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [DatabaseModule, AnimalsModule, ZookeepersModule, UserModule],
+  imports: [
+    AuthModule,
+    AnimalsModule,
+    ZookeepersModule,
+    ConfigModule.forRoot(),
+    UserModule,
+  ],
   controllers: [],
   providers: [],
 })
