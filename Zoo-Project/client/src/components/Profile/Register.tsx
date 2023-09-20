@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import registerImg from "../../assets/registerImg.png";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -35,11 +36,7 @@ const Register = () => {
   return (
     <div className="register-main">
       <div className="login-details">
-        <img
-          className="login-logo"
-          src="https://seeklogo.com/images/E/elephant-logo-1AACCF82CB-seeklogo.com.png"
-          alt=""
-        />
+        <img className="login-logo" src={registerImg} alt="register image" />
         <div className="login-credentials">
           <h1>Register</h1>
           <div className="login-field">

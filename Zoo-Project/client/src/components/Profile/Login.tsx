@@ -1,17 +1,15 @@
 import { useContext, useState } from "react";
 import axios from "axios";
-import { AuthContext } from "../common/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../common/AuthContext";
+import loginImg from "../../assets/loginImg.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login: contextLogin, accessToken: contextAccessToken } =
-    useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  console.log(contextAccessToken);
 
   const handeLogin = async () => {
     try {
@@ -23,14 +21,12 @@ const Login = () => {
       const { accessToken, user } = response.data;
       localStorage.setItem("accessToken", accessToken);
 
-      console.log(accessToken);
-
-      contextLogin(accessToken); // Use contextLogin instead of login
+      login(accessToken);
 
       localStorage.setItem("name", user.name);
       localStorage.setItem("role", user.role);
 
-      // navigate("/about");
+      navigate("/about");
     } catch (error) {
       setEmail("");
       setPassword("");
@@ -44,11 +40,7 @@ const Login = () => {
   return (
     <div className="login-main">
       <div className="login-details">
-        <img
-          className="login-logo"
-          src="https://www.freeiconspng.com/uploads/penguin-icon-14.png"
-          alt=""
-        />
+        <img className="login-logo" src={loginImg} alt="" />
         <div className="login-credentials">
           <h1>Login</h1>
           <div className="login-field">

@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "./common/AuthContext";
+import { AuthContext } from "../common/AuthContext";
 
 const Nav = () => {
   const { accessToken } = useContext(AuthContext);
   const loggedIn = !!accessToken;
-  // console.log(accessToken);
-  // console.log(loggedIn);
+
+  const { logout } = useContext(AuthContext);
 
   return (
     <nav>
@@ -26,7 +26,9 @@ const Nav = () => {
       </div>
 
       {loggedIn ? (
-        <button>Logout</button>
+        <Link to="/login" className="nav-link" onClick={() => logout()}>
+          Logout
+        </Link>
       ) : (
         <div className="links-div">
           <Link className="nav-link" to="/login">

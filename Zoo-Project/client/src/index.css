@@ -52,7 +52,7 @@ nav {
 /*  ABOUT SECTION  */
 
 .about-div {
-  background-image: url("https://wallpapercave.com/wp/wp3793320.png");
+  background-image: url("./assets/aboutBackground.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -78,7 +78,7 @@ nav {
 .login-main {
   width: 100%;
   height: 94vh;
-  background-image: url("https://media.istockphoto.com/id/1270800992/vector/seamless-pattern-with-tropical-animals-and-bird-in-jungle.jpg?s=612x612&w=0&k=20&c=7lFa4lDWHlMLLtHwt_ktLqDWdaTEZ2JfMgO6M14_1J4=");
+  background-image: url("./assets/loginBackground.jpg");
   background-position: center;
   display: flex;
   align-items: center;
@@ -125,7 +125,7 @@ nav {
 
 .register-main {
   height: 94vh;
-  background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/seamless-pattern-tropical-animals-and-leaves-julien.jpg");
+  background-image: url("./assets/registerBackground.jpg");
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,4 +156,53 @@ nav {
   position: absolute;
   bottom: 0;
   color: red;
+}
+/*  */
+/*  */
+/* ZOOKEEPERS SECTION */
+
+.zookeepers-main {
+  background-image: url("./assets/zookeepersBackground.jpg");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  gap: 10px;
+  height: 94vh;
+}
+.zookeeper-card {
+  border: 1px solid black;
+  width: fit-content;
+  height: fit-content;
+  background-color: #2055da;
+  display: flex;
+}
+
+.zookeeper-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+}
+
+.zookeeper-image {
+  width: 150px;
+}
+
+.active {
+  color: greenyellow;
+}
+
+.not-active {
+  color: red;
+}
+
+/*  */
+/*  */
+/*ANIMALS SECTION  */
+
+.animals-main {
+  height: 94vh;
+  background-image: url("./assets/animalsBackground.jpg");
+  background-position: center;
+  background-size: cover;
 }

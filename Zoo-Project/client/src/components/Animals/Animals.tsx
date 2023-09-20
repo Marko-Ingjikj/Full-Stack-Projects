@@ -1,5 +1,5 @@
 const Animals = () => {
-  return <h1>Animals</h1>;
+  return <div className="animals-main"></div>;
 };
 
 export default Animals;
