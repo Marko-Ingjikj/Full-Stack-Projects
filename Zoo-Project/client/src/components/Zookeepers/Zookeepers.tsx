@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ZookeeperCard from "./ZookeeperCard";
+import { toast, ToastContainer } from "react-toastify";
 
 interface Zookeeper {
   id: string;
@@ -19,7 +20,15 @@ const Zookeepers = () => {
       try {
         const response = await axios.get("http://localhost:3000/zookeepers");
         setZookeepers(response.data);
-      } catch (error) {}
+      } catch (error) {
+        toast.error(
+          "Error while getting zookeepers, please check your connection",
+          {
+            position: "top-right",
+            autoClose: 2000,
+          }
+        );
+      }
     };
     fetchZookeeper();
   }, []);
@@ -35,6 +44,8 @@ const Zookeepers = () => {
           isActive={zookeeper.isActive}
         />
       ))}
+
+      <ToastContainer />
     </div>
   );
 };
