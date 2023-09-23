@@ -1,27 +1,28 @@
+import { Link } from "react-router-dom";
 import zookeeperLogo from "../../assets/zookeeperCard.png";
+import { Zookeeper } from "../../interfaces/zookeeper.interface";
 
-const ZookeeperCard = ({
-  name,
-  age,
-  location,
-  isActive,
-}: {
-  name: string;
-  age: number;
-  location: string;
-  isActive: boolean;
+interface ZookeeperCardProps {
+  zookeeper: Zookeeper;
+  onDelete: (zookeeperId: string) => void;
+}
+
+const ZookeeperCard: React.FC<ZookeeperCardProps> = ({
+  zookeeper,
+  onDelete,
 }) => {
   return (
     <div className="zookeeper-card">
       <div className="zookeeper-details">
-        <h3>{name}</h3>
-        <p>{age}</p>
-        <p>{location}</p>
-        {isActive ? (
+        <h3>{zookeeper.name}</h3>
+        <p>{zookeeper.age}</p>
+        <p>{zookeeper.location}</p>
+        {zookeeper.isActive ? (
           <p className="active">Currently active</p>
         ) : (
           <p className="not-active">Currently not active</p>
         )}
+        <p>Supervising animals: {zookeeper.animals.length}</p>
       </div>
 
       <img
@@ -29,6 +30,18 @@ const ZookeeperCard = ({
         alt="zookeeper image"
         className="zookeeper-image"
       />
+      <div className="btn-div">
+        <Link
+          className="zookeeper-btn edit-btn"
+          to={`/zookeeper-form/${zookeeper.id}`}>
+          Edit
+        </Link>
+        <button
+          onClick={() => onDelete(zookeeper.id)}
+          className="zookeeper-btn delete-btn">
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

@@ -6,6 +6,8 @@ import Zookeepers from "./components/Zookeepers/Zookeepers";
 import Login from "./components/Profile/Login";
 import Register from "./components/Profile/Register";
 import { AuthProvider } from "./common/AuthContext";
+import ZookeeperForm from "./components/Zookeepers/ZookeeperForm";
+import AnimalForm from "./components/Animals/AnimalForm";
 
 function App() {
   return (
@@ -19,6 +21,10 @@ function App() {
             <Route path="/zookeepers" element={<Zookeepers />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route
+              path="/zookeeper-form/:id?"
+              element={<ZookeeperForm />}></Route>
+            <Route path="/animal-form/:id?" element={<AnimalForm />}></Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

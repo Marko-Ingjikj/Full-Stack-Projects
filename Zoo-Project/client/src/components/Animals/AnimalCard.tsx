@@ -1,27 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-interface Zookeeper {
-  id: string;
-  name: string;
-  age: number;
-  location: string;
-  isActive: boolean;
-}
+import { Zookeeper } from "../../interfaces/zookeeper.interface";
+import { Link } from "react-router-dom";
 
 const AnimalCard = ({
+  id,
   name,
   type,
   age,
-  characteristics,
   gender,
   location,
   zookeeperId,
 }: {
+  id: string;
   name: string;
   type: string;
   age: number;
-  characteristics: {};
   gender: string;
   location: string;
   zookeeperId: string | null;
@@ -31,28 +25,27 @@ const AnimalCard = ({
   useEffect(() => {
     const getZookeeper = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/zookeepers/${zookeeperId}`
-        );
-        console.log(response.data);
-
-        setZookeeper(response.data);
+        if (zookeeperId) {
+          const response = await axios.get(
+            `http://localhost:3000/zookeepers/${zookeeperId}`
+          );
+          setZookeeper(response.data);
+        }
       } catch (error) {}
     };
     getZookeeper();
-  }, []);
+  }, [zookeeperId]);
 
   return (
     <div className="animal-card">
       <div className="animal-details">
-        {" "}
         <h3>{name}</h3>
         <p>{type}</p>
         <p>{age} years</p>
         <p>{gender}</p>
         <p>{location}</p>
         <p>
-          {zookeeper ? <p>{zookeeper.name}</p> : <p>Currently no zookeeper</p>}
+          Zookeeper: {zookeeper ? zookeeper.name : "Currently no zookeeper"}
         </p>
       </div>
 
@@ -61,6 +54,13 @@ const AnimalCard = ({
         alt=""
         className="animal-image"
       />
+
+      <div className="btn-div">
+        <Link className="zookeeper-btn edit-btn" to={`/animal-form/${id}`}>
+          Edit
+        </Link>
+        <button className="zookeeper-btn delete-btn">Delete</button>
+      </div>
     </div>
   );
 };

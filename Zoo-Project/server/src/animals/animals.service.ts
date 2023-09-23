@@ -55,4 +55,8 @@ export class AnimalsService {
     }
     return 'Animal deleted successfully';
   }
+
+  async removeAnimalsFromZookeeper(id: string): Promise<void> {
+    await this.animalRepository.save({ id, zookeeper: null });
+  }
 }

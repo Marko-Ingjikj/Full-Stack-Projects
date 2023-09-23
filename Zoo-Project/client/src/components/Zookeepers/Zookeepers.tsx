@@ -2,18 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ZookeeperCard from "./ZookeeperCard";
 import { toast, ToastContainer } from "react-toastify";
-
-interface Zookeeper {
-  id: string;
-  name: string;
-  age: number;
-  location: string;
-  isActive: boolean;
-}
+import { Zookeeper } from "../../interfaces/zookeeper.interface";
+import { Link } from "react-router-dom";
 
 const Zookeepers = () => {
   const [zookeepers, setZookeepers] = useState([]);
-  console.log(zookeepers);
 
   useEffect(() => {
     const fetchZookeeper = async () => {
@@ -33,18 +26,32 @@ const Zookeepers = () => {
     fetchZookeeper();
   }, []);
 
+  const handleDelete = async (zookeeperId: string) => {
+    try {
+      await axios.delete(`http://localhost:3000/zookeepers/${zookeeperId}`);
+      setZookeepers((prevZookeepers) =>
+        prevZookeepers.filter(
+          (zookeeper: Zookeeper) => zookeeper.id !== zookeeperId
+        )
+      );
+    } catch (error) {
+      console.error("Error deleting zookeeper:", error);
+    }
+  };
+
   return (
-    <div className="zookeepers-main">
+    <div className="animal-zookeeper-main zookeepers-main">
       {zookeepers.map((zookeeper: Zookeeper) => (
         <ZookeeperCard
           key={zookeeper.id}
-          name={zookeeper.name}
-          age={zookeeper.age}
-          location={zookeeper.location}
-          isActive={zookeeper.isActive}
+          zookeeper={zookeeper}
+          onDelete={handleDelete}
         />
       ))}
 
+      <Link to={"/zookeeper-form"} className="add-button">
+        + Add Zookeeper
+      </Link>
       <ToastContainer />
     </div>
   );

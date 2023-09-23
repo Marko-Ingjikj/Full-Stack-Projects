@@ -2,20 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import AnimalCard from "./AnimalCard";
 import { toast, ToastContainer } from "react-toastify";
-
-interface Animal {
-  id: string;
-  name: string;
-  type: string;
-  age: number;
-  characteristics: {};
-  gender: "Male" | "Female";
-  location: string;
-  zookeeperId: string | null;
-}
+import { Animal } from "../../interfaces/animal.interface";
+import { Link } from "react-router-dom";
 
 const Animals = () => {
   const [animals, setAnimals] = useState([]);
+
+  console.log(animals);
 
   useEffect(() => {
     const fetchAnimals = async () => {
@@ -36,20 +29,24 @@ const Animals = () => {
   }, []);
 
   return (
-    <div className="animals-main">
+    <div className="animal-zookeeper-main animals-main">
       <div className="animal-detials"></div>
       {animals.map((animal: Animal) => (
         <AnimalCard
           key={animal.id}
+          id={animal.id}
           name={animal.name}
           type={animal.type}
           age={animal.age}
-          characteristics={animal.characteristics}
           gender={animal.gender}
           location={animal.location}
           zookeeperId={animal.zookeeperId}
         />
       ))}
+
+      <Link to={"/animal-form"} className="add-button">
+        + Add Animal
+      </Link>
       <ToastContainer />
     </div>
   );

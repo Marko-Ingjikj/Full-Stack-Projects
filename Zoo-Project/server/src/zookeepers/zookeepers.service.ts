@@ -19,7 +19,9 @@ export class ZookeepersService {
   ) {}
 
   getAllZookeepers(): Promise<ZookeeperResponseDto[]> {
-    return this.zookeepersRepository.find();
+    return this.zookeepersRepository.find({
+      relations: ['animals'],
+    });
   }
 
   getZookeeperById(id: string): Promise<ZookeeperResponseDto> {
@@ -40,6 +42,14 @@ export class ZookeepersService {
 
     if (!zookeeper) {
       throw new NotFoundException("Couldn't find zookeeper with that ID");
+    }
+
+    const hasAnimals = zookeeper.animals?.length;
+
+    if (hasAnimals) {
+      for (let animal of zookeeper.animals) {
+        await this.animalsService.removeAnimalsFromZookeeper(animal.id);
+      }
     }
 
     await this.zookeepersRepository.delete(id);

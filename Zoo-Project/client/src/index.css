@@ -12,8 +12,8 @@ a {
   text-decoration: none;
 }
 
-.main-div {
-  height: 94vh;
+body {
+  position: relative;
 }
 /*  */
 /*  */
@@ -51,12 +51,16 @@ nav {
 /*  */
 /*  ABOUT SECTION  */
 
+.main-div {
+  min-height: 94vh;
+  padding: 20px;
+}
+
 .about-div {
   background-image: url("./assets/aboutBackground.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
   color: white;
   display: flex;
   align-items: center;
@@ -65,7 +69,8 @@ nav {
 }
 
 .about-div > div {
-  width: 55%;
+  width: 90%;
+  max-width: 1050px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -146,7 +151,7 @@ nav {
   color: white;
 }
 
-.account-button[disabled] {
+button[disabled] {
   background-color: #ccc;
   color: #666;
   cursor: auto;
@@ -161,21 +166,32 @@ nav {
 /*  */
 /* ZOOKEEPERS SECTION */
 
-.zookeepers-main {
-  background-image: url("./assets/zookeepersBackground.jpg");
+.animal-zookeeper-main {
   background-position: center;
   background-size: cover;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  height: 94vh;
+  min-height: 94vh;
+  padding: 20px;
+  padding-bottom: 100px;
 }
+
+.zookeepers-main {
+  background-image: url("./assets/zookeepersBackground.jpg");
+}
+
 .zookeeper-card,
 .animal-card {
   color: white;
-  background-color: #020202;
+  background-color: rgba(0, 0, 0, 0.85);
   box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
   border-radius: 4px;
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
 }
 
 .zookeeper-details,
@@ -183,7 +199,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 150px;
+  width: 200px;
 }
 
 .zookeeper-image,
@@ -199,16 +215,114 @@ nav {
   color: red;
 }
 
+.btn-div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.zookeeper-btn {
+  padding: 5px;
+  color: white;
+  border: 1px solid gray;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 60px;
+  text-align: center;
+}
+
+.edit-btn {
+  background-color: cadetblue;
+}
+
+.delete-btn {
+  background-color: red;
+}
+
 /*  */
 /*  */
 /*ANIMALS SECTION  */
 
 .animals-main {
-  height: 94vh;
   background-image: url("./assets/animalsBackground.jpg");
+}
+
+.add-button {
+  background-color: #2055da;
+  padding: 8px 14px;
+  font-size: 18px;
+  color: white;
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
+  border-radius: 6px;
+}
+
+/*  */
+/*  */
+/* FORM SECTION */
+
+.animal-form {
+  background-image: url("./assets/animalFormBackground.jpg_large");
+}
+
+.zookeeper-form {
+  background-image: url("./assets/zookeeperFormBackground.webp");
+}
+
+.form-main {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 50px;
+  min-height: 94vh;
   background-position: center;
   background-size: cover;
+}
+
+.form {
+  background-color: #f1f5f9;
+  box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
+  width: 90%;
+  max-width: 550px;
   display: flex;
-  padding: 20px;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
+  height: fit-content;
+  padding: 10px;
+}
+
+.checkbox-field {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-input {
+  width: 60%;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid lightseagreen;
+  font-size: 16px;
+}
+
+.checkbox-label {
+  font-size: 16px;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+.submit-btn {
+  padding: 6px 16px;
+  background-color: darkseagreen;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 4px;
 }
