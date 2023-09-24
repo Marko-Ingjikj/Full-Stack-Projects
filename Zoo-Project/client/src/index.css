@@ -42,18 +42,29 @@ nav {
 
 .nav-link {
   color: #2055da;
+  display: flex;
+  align-items: center;
 }
 
 .nav-link:hover {
   border-bottom: 2px solid gold;
 }
+
+.small-width {
+  display: none;
+}
+
+.nav-icon {
+  font-size: 30px;
+}
+
 /*  */
 /*  */
 /*  ABOUT SECTION  */
 
 .main-div {
   min-height: 94vh;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .about-div {
@@ -164,13 +175,14 @@ button[disabled] {
 }
 /*  */
 /*  */
-/* ZOOKEEPERS SECTION */
+/* ZOOKEEPERS AND ANIMALS SECTION */
 
 .animal-zookeeper-main {
   background-position: center;
   background-size: cover;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   min-height: 94vh;
   padding: 20px;
@@ -192,6 +204,8 @@ button[disabled] {
   flex-direction: column;
   align-items: center;
   padding: 5px;
+  gap: 5px;
+  width: 290px;
 }
 
 .zookeeper-details,
@@ -199,12 +213,15 @@ button[disabled] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px;
+  width: fit-content;
 }
 
-.zookeeper-image,
 .animal-image {
   width: 150px;
+}
+
+.zookeeper-image {
+  width: 200px;
 }
 
 .active {
@@ -240,10 +257,6 @@ button[disabled] {
   background-color: red;
 }
 
-/*  */
-/*  */
-/*ANIMALS SECTION  */
-
 .animals-main {
   background-image: url("./assets/animalsBackground.jpg");
 }
@@ -253,10 +266,11 @@ button[disabled] {
   padding: 8px 14px;
   font-size: 18px;
   color: white;
+  border-radius: 6px;
   position: absolute;
   bottom: 20px;
-  right: 50%;
-  border-radius: 6px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /*  */
@@ -325,4 +339,101 @@ input[type="checkbox"] {
   cursor: pointer;
   font-size: 20px;
   border-radius: 4px;
+}
+
+/*  */
+/*  */
+/* ADMIN SETTINGS SECTION */
+
+.not-allowed {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 94vh;
+  background-image: url("./assets/adminBackground.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.admin-settings {
+  background-color: #f1f5f9;
+  box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
+  width: 90%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  height: fit-content;
+  padding: 10px;
+}
+
+.admin-settings-options {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.admin-settings-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.select-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-field select {
+  width: 200px;
+}
+/*  */
+/*  */
+
+@media only screen and (max-width: 800px) {
+  .small-width {
+    display: flex;
+  }
+  .big-width {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .admin-settings-options {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .logo-disappear {
+    display: none;
+  }
+
+  .login-details {
+    flex-direction: column;
+    width: fit-content;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  nav {
+    padding: 5px;
+    justify-content: space-between;
+  }
+
+  .nav-link {
+    font-size: 18px;
+  }
 }

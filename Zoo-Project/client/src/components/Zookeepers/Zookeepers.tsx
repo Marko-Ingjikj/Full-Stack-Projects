@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ZookeeperCard from "./ZookeeperCard";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { Zookeeper } from "../../interfaces/zookeeper.interface";
 import { Link } from "react-router-dom";
 
 const Zookeepers = () => {
   const [zookeepers, setZookeepers] = useState([]);
+  const userRole = localStorage.getItem("role");
 
   useEffect(() => {
     const fetchZookeeper = async () => {
@@ -49,10 +50,11 @@ const Zookeepers = () => {
         />
       ))}
 
-      <Link to={"/zookeeper-form"} className="add-button">
-        + Add Zookeeper
-      </Link>
-      <ToastContainer />
+      {userRole === "admin" && (
+        <Link to={"/zookeeper-form"} className="add-button">
+          + Add Zookeeper
+        </Link>
+      )}
     </div>
   );
 };

@@ -21,7 +21,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (accessToken) {
       localStorage.setItem("accessToken", accessToken);
     } else {
-      localStorage.removeItem("accessToken");
+      localStorage.clear();
     }
   }, [accessToken]);
 

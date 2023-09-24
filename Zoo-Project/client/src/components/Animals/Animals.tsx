@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AnimalCard from "./AnimalCard";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { Animal } from "../../interfaces/animal.interface";
 import { Link } from "react-router-dom";
 
 const Animals = () => {
   const [animals, setAnimals] = useState([]);
-
-  console.log(animals);
+  const userRole = localStorage.getItem("role");
 
   useEffect(() => {
     const fetchAnimals = async () => {
@@ -28,6 +27,17 @@ const Animals = () => {
     fetchAnimals();
   }, []);
 
+  const handleDelete = async (animalId: string) => {
+    try {
+      await axios.delete(`http://localhost:3000/animals/${animalId}`);
+      setAnimals((prevAnimals) =>
+        prevAnimals.filter((animal: Animal) => animal.id !== animalId)
+      );
+    } catch (error) {
+      console.error("Error deleting zookeeper:", error);
+    }
+  };
+
   return (
     <div className="animal-zookeeper-main animals-main">
       <div className="animal-detials"></div>
@@ -41,13 +51,15 @@ const Animals = () => {
           gender={animal.gender}
           location={animal.location}
           zookeeperId={animal.zookeeperId}
+          onDelete={handleDelete}
         />
       ))}
 
-      <Link to={"/animal-form"} className="add-button">
-        + Add Animal
-      </Link>
-      <ToastContainer />
+      {userRole === "admin" && (
+        <Link to={"/animal-form"} className="add-button">
+          + Add Animal
+        </Link>
+      )}
     </div>
   );
 };

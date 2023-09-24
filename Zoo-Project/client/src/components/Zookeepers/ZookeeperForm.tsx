@@ -2,12 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Zookeeper } from "../../interfaces/zookeeper.interface";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const ZookeeperForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [zookeeper, setZookeeper] = useState<Zookeeper | null>(null);
+  const userRole = localStorage.getItem("role");
 
   const [name, setName] = useState<string>("");
   const [age, setAge] = useState<number>(18);
@@ -62,6 +63,14 @@ const ZookeeperForm = () => {
     navigate("/zookeepers");
   };
 
+  if (userRole != "admin") {
+    return (
+      <div className="not-allowed">
+        <h1>You must be admin to view this page!</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="form-main zookeeper-form">
       <div className="form">
@@ -110,8 +119,6 @@ const ZookeeperForm = () => {
           Submit
         </button>
       </div>
-
-      <ToastContainer />
     </div>
   );
 };

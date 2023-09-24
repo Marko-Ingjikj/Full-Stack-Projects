@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../common/AuthContext";
 import loginImg from "../../assets/loginImg.png";
@@ -26,7 +26,11 @@ const Login = () => {
       localStorage.setItem("name", user.name);
       localStorage.setItem("role", user.role);
 
-      navigate("/about");
+      toast.success(`Welcome back, ${user.name}`, {
+        position: "top-right",
+        autoClose: 2000,
+      });
+      navigate("/");
     } catch (error) {
       setEmail("");
       setPassword("");
@@ -76,7 +80,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

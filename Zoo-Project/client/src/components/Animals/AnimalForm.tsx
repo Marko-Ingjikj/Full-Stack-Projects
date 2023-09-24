@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { Animal } from "../../interfaces/animal.interface";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const AnimalForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [animal, setAnimal] = useState<Animal | null>(null);
+  const userRole = localStorage.getItem("role");
 
   const [name, setName] = useState<string>("");
   const [type, setType] = useState<string>("");
@@ -84,6 +85,14 @@ const AnimalForm = () => {
     }
     navigate("/animals");
   };
+
+  if (userRole != "admin") {
+    return (
+      <div className="not-allowed">
+        <h1>You must be admin to view this page!</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="form-main animal-form">
@@ -198,8 +207,6 @@ const AnimalForm = () => {
           Sumbmit
         </button>
       </div>
-
-      <ToastContainer />
     </div>
   );
 };

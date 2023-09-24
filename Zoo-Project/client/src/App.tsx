@@ -8,6 +8,7 @@ import Register from "./components/Profile/Register";
 import { AuthProvider } from "./common/AuthContext";
 import ZookeeperForm from "./components/Zookeepers/ZookeeperForm";
 import AnimalForm from "./components/Animals/AnimalForm";
+import AdminSettings from "./components/AdminSettings/AdminSettings";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
               path="/zookeeper-form/:id?"
               element={<ZookeeperForm />}></Route>
             <Route path="/animal-form/:id?" element={<AnimalForm />}></Route>
+            <Route path="/admin-settings" element={<AdminSettings />}></Route>
+            <Route
+              path="/*"
+              element={<h1 className="not-allowed">Page not found</h1>}></Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

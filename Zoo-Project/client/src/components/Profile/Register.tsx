@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import registerImg from "../../assets/registerImg.png";
+import { User } from "../../interfaces/user.interface";
 
 const Register = () => {
+  const [users, setUsers] = useState<User[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,14 +18,33 @@ const Register = () => {
     return emailPattern.test(email);
   };
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await axios.get("http://localhost:3000/user");
+      setUsers(response.data);
+    };
+    fetchUsers();
+  }, []);
+
   const handleRegister = async () => {
     try {
-      await axios.post("http://localhost:3000/auth/register", {
-        name,
-        email,
-        password,
-        role: "user",
-      });
+      // If first user make admin, every other user registered will first be user
+      if (users?.length != 0) {
+        await axios.post("http://localhost:3000/auth/register", {
+          name,
+          email,
+          password,
+          role: "user",
+        });
+      } else {
+        await axios.post("http://localhost:3000/auth/register", {
+          name,
+          email,
+          password,
+          role: "admin",
+        });
+      }
+
       navigate("/login");
     } catch (error) {
       toast.error("Something went wrong, please try again", {
@@ -85,7 +106,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

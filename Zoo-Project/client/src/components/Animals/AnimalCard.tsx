@@ -11,6 +11,7 @@ const AnimalCard = ({
   gender,
   location,
   zookeeperId,
+  onDelete,
 }: {
   id: string;
   name: string;
@@ -19,8 +20,10 @@ const AnimalCard = ({
   gender: string;
   location: string;
   zookeeperId: string | null;
+  onDelete: (animalId: string) => void;
 }) => {
   const [zookeeper, setZookeeper] = useState<Zookeeper | null>(null);
+  const userRole = localStorage.getItem("role");
 
   useEffect(() => {
     const getZookeeper = async () => {
@@ -40,10 +43,10 @@ const AnimalCard = ({
     <div className="animal-card">
       <div className="animal-details">
         <h3>{name}</h3>
-        <p>{type}</p>
-        <p>{age} years</p>
-        <p>{gender}</p>
-        <p>{location}</p>
+        <p>Type: {type}</p>
+        <p>Age: {age} years</p>
+        <p>Gender: {gender}</p>
+        <p>Location: {location}</p>
         <p>
           Zookeeper: {zookeeper ? zookeeper.name : "Currently no zookeeper"}
         </p>
@@ -55,12 +58,18 @@ const AnimalCard = ({
         className="animal-image"
       />
 
-      <div className="btn-div">
-        <Link className="zookeeper-btn edit-btn" to={`/animal-form/${id}`}>
-          Edit
-        </Link>
-        <button className="zookeeper-btn delete-btn">Delete</button>
-      </div>
+      {userRole === "admin" && (
+        <div className="btn-div">
+          <Link className="zookeeper-btn edit-btn" to={`/animal-form/${id}`}>
+            Edit
+          </Link>
+          <button
+            onClick={() => onDelete(id)}
+            className="zookeeper-btn delete-btn">
+            Delete
+          </button>
+        </div>
+      )}
     </div>
   );
 };
